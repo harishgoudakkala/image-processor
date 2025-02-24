@@ -7,13 +7,11 @@ import { handleUpload } from "../controllers/uploadController.js";
 
 const router = express.Router();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const uploadDir = "/tmp/uploads";
 
-const uploadDir = path.join(__dirname, "..", "uploads");
-
+// Ensure the directory exists
 if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+    fs.mkdirSync(uploadDir, { recursive: true });
 }
 
 const upload = multer({ dest: uploadDir });
