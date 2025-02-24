@@ -39,7 +39,7 @@ new Worker(
       const csvFilePath = await generateCSV(request);
       console.log(`CSV File Generated: ${csvFilePath}`);
 
-      request.csvFilePath =  `http://localhost:5000/download/${requestId}`;
+      request.csvFilePath =  `https://image-processor-six.vercel.app/download/${requestId}`;
       await request.save();
 
       if (request.webhookUrl) {
@@ -48,7 +48,7 @@ new Worker(
             requestId,
             status: "completed",
             products: request.products,
-            csvDownloadUrl: `http://localhost:5000/download/${requestId}`,
+            csvDownloadUrl: `https://image-processor-six.vercel.app/download/${requestId}`,
           })
           .then(() => console.log(`Webhook sent successfully for requestId: ${requestId}`))
           .catch((err) => console.error(`Failed to send webhook for requestId: ${requestId}`, err));

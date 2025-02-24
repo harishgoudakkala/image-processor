@@ -7,7 +7,7 @@
 
 ## Live Deployment
 
-🔗 **API Base URL:** [https://your-deployment-link.com](https://your-deployment-link.com)
+🔗 **API Base URL:** [https://image-processor-six.vercel.app/](https://image-processor-six.vercel.app/)
 
 ## Features
 
@@ -55,5 +55,5 @@ PORT=5000
 ### 4. Start the Application
 
 ```sh
- npm run dev
+ npm start
 ```
