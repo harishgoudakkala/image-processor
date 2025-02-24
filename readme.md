@@ -27,7 +27,7 @@
 
 ## Installation
 
-### 1.Clone the Repository
+### 1. Clone the Repository
 
 ```sh
  git clone https://github.com/harishgoudakkala/image-processor.git
