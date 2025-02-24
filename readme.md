@@ -52,7 +52,7 @@ REDIS_PASSWORD=yourpassword
 PORT=5000
 ```
 
-### 4️⃣ Start the Application
+### 4. Start the Application
 
 ```sh
  npm run dev
