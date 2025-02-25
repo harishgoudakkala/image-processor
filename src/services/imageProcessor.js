@@ -26,6 +26,7 @@ export const processImage = async (url) => {
     // console.log(`Processing image: ${url} (${metadata.format})`);
 
     const buffer = await sharp(response.data).jpeg({ quality: 50 }).toBuffer();
+    console.log(`��� Image processed successfully, size: ${buffer.length} bytes`);
     const tempDir = "/tmp";  
     const fileName = `temp-${Date.now()}.jpg`;
     const filePath = path.join(tempDir, fileName);
