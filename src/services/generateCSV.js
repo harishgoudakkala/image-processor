@@ -3,7 +3,7 @@ import path from "path";
 import fastCsv from "fast-csv";
 
 export const generateCSV = async (request) => {
-  const outputPath = path.join("/tmp", `${request.requestId}.csv`); // ✅ Use /tmp for Vercel
+  const outputPath = path.join("/tmp", `${request.requestId}.csv`);
 
   const csvStream = fastCsv.format({ headers: true });
   const writableStream = fs.createWriteStream(outputPath);

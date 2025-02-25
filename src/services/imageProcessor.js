@@ -2,7 +2,8 @@ import axios from "axios";
 import sharp from "sharp";
 import FormData from "form-data";
 import fs from "fs";
-import { v4 as uuidv4 } from "uuid";
+import path from "path";
+// import { v4 as uuidv4 } from "uuid";
 
 export const processImage = async (url) => {
   try {
@@ -22,12 +23,13 @@ export const processImage = async (url) => {
     console.log(`Processing image: ${url} (${metadata.format})`);
 
     const buffer = await sharp(response.data).jpeg({ quality: 50 }).toBuffer();
-
-    const tempFilePath = `./temp-${uuidv4()}.jpg`;
-    fs.writeFileSync(tempFilePath, buffer);
+    const tempDir = "/tmp";  
+    const fileName = `temp-${Date.now()}.jpg`;
+    const filePath = path.join(tempDir, fileName);
+    fs.writeFileSync(filePath, buffer);
 
     const form = new FormData();
-    form.append("image", fs.createReadStream(tempFilePath));
+    form.append("image", fs.createReadStream(filePath));
 
     const imgbbResponse = await axios.post(
       `https://api.imgbb.com/1/upload?key=${process.env.IMGBB_API_KEY}`,
@@ -35,7 +37,7 @@ export const processImage = async (url) => {
       { headers: form.getHeaders() }
     );
 
-    fs.unlinkSync(tempFilePath);
+    fs.unlinkSync(filePath);
 
     return imgbbResponse.data.data.url;
   } catch (error) {
