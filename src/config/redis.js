@@ -1,14 +1,11 @@
 import Redis from "ioredis"
 
 const redis = new Redis({
-  socket: {
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT,
-    tls: true,
-    connectTimeout: 30000,
-  },
-  maxRetriesPerRequest: null,
-  password: process.env.REDIS_PASSWORD,
+    password: process.env.REDIS_PASSWORD,
+    maxRetriesPerRequest: null,
+    connectTimeout:30000
 });
 
 redis.on("connect", () => {
