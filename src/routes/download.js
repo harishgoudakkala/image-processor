@@ -18,10 +18,10 @@ router.get("/:requestId", async (req, res) => {
 
     const csvFields = ["S. No.", "Product Name", "Input Images", "Output Images"];
     const csvData = request.products.map((product, index) => ({
-      sno: index + 1,
-      productName: product.productName,
-      inputUrls: product.inputImages.join(" | "),
-      outputUrls: product.outputImages.join(" | "),
+      "S. No.": index + 1,
+      "Product Name": product.productName,
+      "Input Images": product.inputImages.join(" | "),
+      "Output Images": product.outputImages.join(" | "),
     }));
 
     const parser = new Parser({ fields: csvFields });
