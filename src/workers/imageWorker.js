@@ -4,7 +4,7 @@ import { generateCSV } from "../services/generateCSV.js";
 import Request from "../models/Request.js";
 import { processImage } from "../services/imageProcessor.js";
 
-const queue = new PQueue({ concurrency: 5 }); // ✅ Limit 5 jobs at a time
+const queue = new PQueue({ concurrency: 5 });
 
 export const addToQueue = async (requestId, products) => {
   products.forEach((product) => {
@@ -32,7 +32,7 @@ export const addToQueue = async (requestId, products) => {
         await request.save();
 
         const csvFilePath = await generateCSV(request);
-        console.log(`✅ CSV File Generated: ${csvFilePath}`);
+        console.log(`CSV File Generated: ${csvFilePath}`);
 
         request.csvFilePath = `https://image-processor-six.vercel.app/download/${requestId}`;
         await request.save();
